@@ -86,9 +86,9 @@ class LicenseType:
 
 def GenerateLicense(Type : LicenseType, Count : int, UserName : str, MajorVersion : int, MinorVersion):
     assert(Count >= 0)
-    LicenseString = '%d#%s|%d%d#%d#%d3%d6%d#%d#%d#%d#' % (Type, 
-                                                          UserName, MajorVersion, MinorVersion, 
-                                                          Count, 
+    LicenseString = '%d#%s|%d%d#%d#%d3%d6%d#%d#%d#%d#' % (Type,
+                                                          UserName, MajorVersion, MinorVersion,
+                                                          Count,
                                                           MajorVersion, MinorVersion, MinorVersion,
                                                           0,    # Unknown
                                                           0,    # No Games flag. 0 means "NoGames = false". But it does not work.
@@ -104,7 +104,7 @@ def GenerateLicense(Type : LicenseType, Count : int, UserName : str, MajorVersio
 def get_lc():
     name = request.args.get('name', '')
     version = request.args.get('ver', '')
-    count = int(request.args.get('count', '1'))
+    count = int(request.args.get('count', '99'))
     try:
         MajorVersion, MinorVersion = version.split('.')[0:2]
     except:
@@ -120,7 +120,7 @@ def download_lc(lc):
     if lc and len(lc) > 5 and os.path.exists('./' + lc):
         return send_file(lc,
             as_attachment=True,
-            attachment_filename='Custom.mxtpro') 
+            attachment_filename='Custom.mxtpro')
     else:
         return "请检查用户名版本号是否正确！"
 
